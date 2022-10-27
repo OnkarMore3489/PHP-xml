@@ -1,0 +1,156 @@
+/*q2.php
+
+<html>
+	<head>
+		<title>Book</title>
+	</head>
+	<body>
+		<h1>XML contents:</h1>
+		<pre>
+			<?php
+				$book_xml=simplexml_load_file("q2.xml"); // or die("error:cannot create object");
+	
+				echo htmlspecialchars($book_xml->asXML());
+			?>
+		</pre>
+	</body>
+</html>
+
+
+/*q2.xml
+
+
+
+
+<?xml version="1.0" ?>
+<bookstore>
+
+<books category="technical">
+<book_no>1</book_no>
+<book_name>Atomic habits</book_name>
+<author_name>James clear</author_name>
+<price>200</price>
+<year>1990</year>
+</books>
+
+<books category="Cooking">
+<book_no>2</book_no>
+<book_name>Khana Khajana</book_name>
+<author_name>Madhura</author_name>
+<price>150</price>
+<year>2000</year>
+</books>
+
+<books category="YOGA">
+<book_no>3</book_no>
+<book_name>Healthy habits</book_name>
+<author_name>James root</author_name>
+<price>250</price>
+<year>2010</year>
+</books>
+
+
+</bookstore>
+
+
+
+
+
+
+
+*/
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------------Suggest html------------------*/
+
+
+
+
+
+<html>
+	<head>
+		<title>Suggestion</title>
+	</head>
+	<body>
+		<input type="text" id="query_input" onkeyup="showSuggestion()" placeholder="Typr something..">
+	<p id="output">
+
+	</p>
+	</body>
+	<script>
+		var url="http://192.168.16.1/ty8844/sem6_php/Assignment_11/suggest.php";
+		xmlhttp=new XMLHttpRequest();
+		q=document.querySelector("#query_input").value;
+		function showSuggestion(){
+			q=document.querySelector("#query_input").value;
+			console.log(q);
+			xmlhttp.onreadystatechange=function(){
+				if(xmlhttp.readyState==4 && xmlhttp.status==200){
+					document.querySelector("#output").innerHTML=xmlhttp.responseText;
+				}
+			}
+			xmlhttp.open("GET",url+ "?q="+ q);
+			xmlhttp.send();
+		}
+	<
+/*----------End suggest html------------------*/
+
+
+
+/*--------------Suggest php---------------*/
+
+
+
+
+
+<?php
+	$a[]="In search of lost time";
+	$a[]="One hundred years of solitude";
+	$a[]="The great gatsby";
+	$a[]="Think and grow rich";
+	
+
+	$q=$_REQUEST["q"];
+	$output="";
+	foreach($a as $book){
+		if(strpos($book,$q)!==false){
+			$output=$output."<br>".$book;
+		}
+	}
+	if(strcmp($output,"")==0)
+		echo "No result found";
+	else
+		echo $output;
+
+?>
+
+
+
+
+
+
+
+
+/*-------------End of suggest php-------------*/
+
+
+
